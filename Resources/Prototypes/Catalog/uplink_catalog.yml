@@ -2131,21 +2131,17 @@
   description: uplink-cane-blade-desc
   icon: { sprite:  Objects/Weapons/Melee/cane.rsi, state: cane}
   productEntity: CaneSheathFilled
-  discountCategory: rareDiscounts
+  discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 4
   cost:
-    Telecrystal: 5
+    Telecrystal: 6
   categories:
   - UplinkJob
   conditions:
   - !type:BuyerJobCondition
     whitelist:
     - Librarian
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
 
 - type: listing
   id: UplinkCombatBakery
