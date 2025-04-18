@@ -6,10 +6,13 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/cane.rsi
-    state: cane
+    state: icon
   - type: Item
     size: Normal
     sprite: Objects/Weapons/Melee/cane.rsi
+    state: storage
+    shape:
+      - 0,0,0,2
   - type: Appearance
   - type: MeleeWeapon
     wideAnimationRotation: 45
@@ -50,6 +53,7 @@
   - type: Item
     size: Normal
     sprite: Objects/Weapons/Melee/cane_blade.rsi
+    state: storage
   - type: Tag
     tags:
       - CaneBlade
@@ -62,7 +66,13 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/cane.rsi
-    state: cane-empty
+    state: icon-empty
+  - type: Item
+    size: Normal
+    sprite: Objects/Weapons/Melee/cane.rsi
+    state: storage-empty
+    shape:
+      - 0,0,0,2
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
