@@ -14,14 +14,14 @@
     wideAnimationRotation: 45
     damage:
       types:
-        Blunt: 5
+        Blunt: 8
   - type: StaminaDamageOnHit
-    damage: 5
+    damage: 8
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 3
+        Blunt: 2
   - type: UseDelay
     delay: 1
 
