@@ -9,8 +9,9 @@
     state: icon
   - type: Item
     size: Normal
-    sprite: Objects/Weapons/Melee/cane.rsi
-    state: storage
+    storedSprite:
+      sprite: Objects/Weapons/Melee/cane_storage_64x.rsi
+      state: icon
     shape:
       - 0,0,0,2
   - type: Appearance
@@ -28,32 +29,30 @@
         Blunt: 5
   - type: UseDelay
     delay: 1
-
 - type: entity
   name: cane blade
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [BaseSword, BaseSyndicateContraband]
   id: CaneBlade
   description: A sharp blade with a cane shaped hilt.
   components:
-  - type: Sharp
   - type: Sprite
     sprite: Objects/Weapons/Melee/cane_blade.rsi
     state: icon
   - type: MeleeWeapon
-    wideAnimationRotation: 65
     attackRate: 1.4
     damage:
       types:
         Slash: 16
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
     reflectProb: .1
     spread: 90
   - type: Item
     size: Normal
-    sprite: Objects/Weapons/Melee/cane_blade.rsi
-    state: storage
+    storedSprite:
+      sprite: Objects/Weapons/Melee/cane_storage_64x.rsi
+      state: blade
+    shape:
+      - 0,0,0,2
   - type: Tag
     tags:
       - CaneBlade
@@ -62,50 +61,21 @@
 - type: entity
   parent: Cane
   id: CaneSheath
-  suffix: Empty
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/cane.rsi
-    state: icon-empty
-  - type: Item
-    size: Normal
-    sprite: Objects/Weapons/Melee/cane.rsi
-    state: storage-empty
-    shape:
-      - 0,0,0,2
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-      item: !type:ContainerSlot
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: ItemSlots
-    slots:
-      item:
-        name: CaneBlade
-        insertVerbText: sheath-insert-verb
-        ejectVerbText: sheath-eject-verb
-        whitelist:
-          tags:
-          - CaneBlade
-        insertSound: /Audio/Items/sheath.ogg
-        ejectSound: /Audio/Items/unsheath.ogg
-  - type: ItemMapper
-    mapLayers:
-      cane:
-        whitelist:
-          tags:
-          - CaneBlade
-
-- type: entity
-  id: CaneSheathFilled
-  parent: CaneSheath
   suffix: Filled
   components:
-  - type: ContainerFill
+  - type: ItemSlots
+    slots:
+      sheath:
+        name: Sheath
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        startingItem: CaneBlade
+        priority: 2
+        whitelist:
+          tags:
+            - CaneBlade
+  - type: ContainerContainer
     containers:
-      item:
-      - CaneBlade
+      sheath: !type:ContainerSlot

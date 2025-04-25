@@ -28,12 +28,6 @@
     {
       "name": "wielded-inhand-right",
       "directions": 4
-    },
-    {
-      "name": "storage-empty"
-    },
-    {
-      "name": "storage"
     }
   ]
 }
