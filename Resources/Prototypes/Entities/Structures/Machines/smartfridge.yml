@@ -13,36 +13,21 @@
     sprite: Structures/Machines/smartfridge.rsi
     snapCardinals: true
     layers:
-    - state: smartfridge
+    - state: base
       map: ["enum.StorageVisualLayers.Base"]
-    - state: smartfridge_door
+    - state: door_closed
       map: ["enum.StorageVisualLayers.Door"]
       shader: unshaded
-  - type: EntityStorageVisuals
-    stateBaseClosed: smartfridge
-    stateDoorOpen: smartfridge_open
-    stateDoorClosed: smartfridge_door
+    - state: locked
+      shader: unshaded
+      map: ["enum.LockVisualLayers.Lock"]
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#9dc5c9"
-  - type: EntityStorage
-    isCollidableWhenOpen: true
-    closeSound:
-      path: /Audio/Machines/windoor_open.ogg
-      params:
-        volume: -3
-    openSound:
-      path: /Audio/Machines/windoor_open.ogg
-      params:
-        volume: -3
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-  - type: UseDelay
-    delay: 1
   - type: AntiRottingContainer
   - type: ResistLocker
+    -resistTime: 20f
   - type: Physics
     bodyType: Static
   - type: Transform
@@ -53,12 +38,12 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.42,-0.42,0.42,0.42"
         mask:
         - MachineMask
         layer:
         - MachineLayer
-        density: 200
+        density: 240
   - type: Anchorable
     delay: 2
   - type: InteractionOutline
@@ -86,10 +71,33 @@
           collection: MetalBreak
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: DamageOnHighSpeedImpact
-    damage:
-      types:
-        Blunt: 5
-    soundHit:
-      collection: MetalThud
+    damageModifierSet: StructuralMetallic
+  - type: Clickable
+  - type: UserInterface
+    interfaces:
+     enum.StorageUiKey.Key:
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    - 0,5,7,8
+    maxItemSize: Large
+    storageOpenSound: /Audio/Machines/windoor_open.ogg
+    storageCloseSound: /Audio/Machines/windoor_open.ogg
+    storageInsertSound: /Audio/Items/bottle_clunk.ogg
+    storageRemoveSound: /Audio/Items/bottle_clunk_2.ogg
+  - type: Lock
+    locked: true
+  - type: LockVisuals
+    stateLocked: locked
+    stateUnlocked: unlocked
+  - type: AccessReader
+    access: [[ "Medical" ]]
+  - type: EntityStorageVisuals
+    stateBaseOpen: base
+    stateBaseClosed: base
+    stateDoorOpen: door_open
+    stateDoorClosed: door_closed

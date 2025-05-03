@@ -8,10 +8,7 @@
   },
   "states": [
     {
-      "name": "smartfridge_open"
-    },
-    {
-      "name": "smartfridge"
+      "name": "base"
     },
     {
       "name": "off"
@@ -20,7 +17,16 @@
       "name": "broken"
     },
     {
-      "name": "smartfridge_door"
+      "name": "door_closed"
+    },
+    {
+      "name": "door_open"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
     }
   ]
 }
